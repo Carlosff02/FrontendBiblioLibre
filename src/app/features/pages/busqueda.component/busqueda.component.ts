@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { catchError, throwError } from 'rxjs';
 
 
 @Component({
@@ -16,20 +17,27 @@ import { rxResource } from '@angular/core/rxjs-interop';
 export class BusquedaComponent {
   procesandoDatos = signal<boolean>(false);
   private readonly libroService = inject(LibroService);
-  
+
   titulo = '';
   autor = '';
   idiomaSeleccionado = 'todos';
 
 
-  librosResource = rxResource({
-    stream: () => this.libroService.buscarPorFiltros({
+
+librosResource = rxResource({
+  stream: () =>
+    this.libroService.buscarPorFiltros({
       titulo: this.titulo.trim(),
       autor: this.autor.trim(),
       idioma: this.idiomaSeleccionado,
       page: this.page
-    })
-  })
+    }).pipe(
+      catchError(err => {
+        console.error('Error en buscarPorFiltros', err);
+        return throwError(() => err);
+      })
+    )
+});
   page = 1;
 
   maxVisible = 5;
