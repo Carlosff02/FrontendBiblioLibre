@@ -16,7 +16,7 @@ export class EpubViewerService {
   public currentCfi: string | null = null;
   public isAtEnd = false;
   public isAtStart = true;
-  apiUrl = 'http://localhost:8080/api/visor-epub';
+  apiUrl = `${constants.apiUrl}/visor-epub`;
 
   constructor() {}
 

@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { constants } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibrosSubidosService {
 
-  private baseUrl = 'http://localhost:8080/api/mis-libros';
+  private baseUrl = `${constants.apiUrl}/mis-libros`;
 
   constructor(private http: HttpClient) {}
 

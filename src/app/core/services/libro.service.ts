@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Libro } from '../models/libro';
 import { PageLibro } from '../models/page-libro';
+import { constants } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibroService {
-  libroUrl = 'http://localhost:8080/api/libros';
+  libroUrl = `${constants.apiUrl}/libros`;
 
   constructor(private readonly http:HttpClient){
 
