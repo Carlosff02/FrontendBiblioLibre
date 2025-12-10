@@ -1,0 +1,43 @@
+<div class="p-6 max-w-3xl mx-auto">
+
+  <h2 class="text-2xl font-bold mb-4">Mis Libros</h2>
+
+  <div class="mb-6 p-4 border rounded shadow bg-white">
+    <h3 class="font-semibold mb-2">Subir un nuevo libro (EPUB)</h3>
+
+    <input
+      type="text"
+      placeholder="Título del libro"
+      [(ngModel)]="tituloLibro"
+      class="border p-2 w-full rounded mb-3"
+    />
+
+    <input
+      type="file"
+      accept=".epub"
+      (change)="onFileSelected($event)"
+      class="border p-2 w-full rounded mb-3"
+    />
+
+    <button
+      class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+      (click)="subirLibro()">
+      Subir libro
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    @for (libro of librosResource.value(); track $index) {
+    <div class="p-4 border rounded shadow bg-white">
+      <h3 class="font-semibold">{{ libro.titulo }}</h3>
+
+      <button
+        class="mt-3 bg-indigo-600 text-white px-4 py-2 rounded"
+        [routerLink]="['/visor-libro-subido', libro.id]">
+        Leer
+      </button>
+    </div>
+    }
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="flex flex-col h-screen bg-[#f5e6ca] text-[#3b2f2f]">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between bg-indigo-600 text-white p-4 shadow-md">
+    <div class="flex items-center space-x-3">
+
+      <button
+        (click)="goPrev()"
+        class="bg-indigo-500 hover:bg-indigo-400 px-3 py-1 rounded flex items-center">
+        ⬅️ Anterior
+      </button>
+
+      <button
+        (click)="goNext()"
+        class="bg-indigo-500 hover:bg-indigo-400 px-3 py-1 rounded flex items-center">
+        Siguiente ➡️
+      </button>
+
+    </div>
+
+    <div class="text-lg font-semibold truncate w-1/2 text-center">
+      {{ libro?.titulo }}
+    </div>
+
+    <button
+      routerLink="/mis-libros"
+      class="bg-indigo-500 hover:bg-indigo-400 px-3 py-1 rounded">
+      Salir
+    </button>
+  </header>
+
+  <!-- Visor EPUB -->
+  <div class="flex-1 overflow-hidden bg-white shadow-inner">
+    <div #viewer class="w-full h-full"></div>
+  </div>
+
+</div>
