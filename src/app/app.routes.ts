@@ -16,7 +16,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: Principal },
       { path: 'busqueda', component: BusquedaComponent },
-      { path: 'busqueda/visor/:titulo', component: VisorLibroComponent },
+      { path: 'busqueda/visor/:titulo', component: VisorLibroComponent,  },
 
       // ⭐ AQUI AGREGO "MIS LIBROS"
       {
