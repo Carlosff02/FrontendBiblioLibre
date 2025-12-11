@@ -24,7 +24,7 @@ export class Principal {
   libros = rxResource({
     stream: () => this.libroService.listarLibrosPopulares()
 });
-librosPorUsuario:Libro[] =[];
+librosPorUsuario =signal<Libro[]>([]);
 
 usuarioId = signal<number|null>(null)
 
@@ -36,7 +36,7 @@ constructor(){
     const user = this.usuarioService.getUsuario();
 
     this.usuarioId.set(user?.id ?? null);
-    this.librosPorUsuario=[]
+    this.librosPorUsuario.set([])
     this.obtenerLibrosPorUsuario();
   });
 }
@@ -45,13 +45,13 @@ obtenerLibrosPorUsuario() {
   const id = this.usuarioId();
 
   if (!id) {
-    this.librosPorUsuario = [];
+    this.librosPorUsuario.set([]);
     return;
   }
 
   this.libroUsuarioService.obtenerLibrosPorUsuario(id).subscribe({
     next: (res) => {
-      this.librosPorUsuario = res ?? [];
+      this.librosPorUsuario.set(res ?? []);
       console.log(this.librosPorUsuario)
     },
     error: (err) => {
