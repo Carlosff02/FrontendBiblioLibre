@@ -36,7 +36,6 @@ constructor(){
     const user = this.usuarioService.getUsuario();
 
     this.usuarioId.set(user?.id ?? null);
-    this.librosPorUsuario.set([])
     this.obtenerLibrosPorUsuario();
   });
 }
@@ -52,7 +51,7 @@ obtenerLibrosPorUsuario() {
   this.libroUsuarioService.obtenerLibrosPorUsuario(id).subscribe({
     next: (res) => {
       this.librosPorUsuario.set(res ?? []);
-      console.log(this.librosPorUsuario)
+      console.log(this.librosPorUsuario())
     },
     error: (err) => {
       console.error('Error al cargar libros:', err);

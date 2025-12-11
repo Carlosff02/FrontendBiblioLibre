@@ -86,7 +86,7 @@ export class AuthService {
 
 
 
-
+      this.usuarioService.setUsuario(new Usuario(null,'',''));
    this.tokenService.removeToken();
     localStorage.clear();
     sessionStorage.clear();
