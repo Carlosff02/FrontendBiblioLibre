@@ -3,6 +3,8 @@ import ePub, { Book, Rendition } from 'epubjs';
 import { constants } from '../constants/constants';
 import { ArchivoResponseDTO } from '../models/archivo-response-dto.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Libro } from '../models/libro';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +28,11 @@ export class EpubViewerService {
     .set('usuarioId', usuarioId)
     .set('cfi', cfi)
     return this.http.get(this.apiUrl, {params});
+  }
+
+  obtenerLibrosPorUsuario(usuarioId:number):Observable<Libro[]>{
+
+    return this.http.get<Libro[]>(`${this.apiUrl}/${usuarioId}`);
   }
 
   visualizarEpub(epubUrl: string, viewerRef: ElementRef, titulo: string, usuarioId?: number): void {

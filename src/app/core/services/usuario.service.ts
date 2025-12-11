@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 
 
 import { Observable } from 'rxjs';
@@ -13,11 +13,12 @@ import { constants } from '../constants/constants';
 export class UsuarioService {
 
   private readonly http = inject(HttpClient);
-
+  usuarioChange = signal(0);
 
   setUsuario(usuario:Usuario){
       //console.log(usuario)
     localStorage.setItem(constants.CURRENT_USER, JSON.stringify(usuario));
+    this.usuarioChange.update(v => v + 1);
   }
 
   getUsuario(): Usuario | null {
@@ -28,6 +29,7 @@ export class UsuarioService {
     }
     return null; // Return null if no user is found
   }
+
 
 
 

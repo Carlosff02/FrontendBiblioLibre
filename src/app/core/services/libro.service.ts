@@ -16,6 +16,7 @@ export class LibroService {
   }
 
   listarLibrosPopulares():Observable<Libro[]>{
+    console.log(`${this.libroUrl}/populares`)
     return this.http.get<Libro[]>(`${this.libroUrl}/populares`)
   }
 
