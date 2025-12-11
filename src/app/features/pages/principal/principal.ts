@@ -36,6 +36,7 @@ constructor(){
     const user = this.usuarioService.getUsuario();
 
     this.usuarioId.set(user?.id ?? null);
+    this.librosPorUsuario=[]
     this.obtenerLibrosPorUsuario();
   });
 }
